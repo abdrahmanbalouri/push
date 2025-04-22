@@ -5,47 +5,40 @@ import (
 	"sort"
 )
 
-func Solve(stackA []int) {
-	switch len(stackA) {
-	case 2:
-		SortTwo(&stackA)
-	case 3:
-		SortThree(&stackA)
-	default:
-		SortStack(&stackA)
-	}
-}
 
-func SortTwo(stackA *[]int) {
-	a := *stackA
+
+func SortTwo(a []int) {
+	//fmt.Println("SortTwo")
 	if a[0] > a[1] {
 		sa(a)
 	}
 }
 
-func SortThree(stackA *[]int) {
-	a := *stackA
-	sorted := []int{}
-	sorted=append(sorted, a...)
+
+
+func SortThree(a []int) {
 	
-	sort.Ints(sorted)
 
-	switch {
-	case sorted[1] == a[0] && sorted[0] == a[1] && sorted[2] == a[2]:
+	if a[0] > a[1] && a[1] < a[2] && a[0] < a[2] {
 		fmt.Println("sa")
-	case sorted[2] == a[0] && sorted[1] == a[1] && sorted[0] == a[2]:
+		sa(a)
+	} else if a[0] > a[1] && a[1] > a[2] {
 		fmt.Println("sa")
+		sa(a)
 		fmt.Println("rra")
-	case sorted[2] == a[0] && sorted[0] == a[1] && sorted[1] == a[2]:
+		rra(a)
+	} else if a[0] > a[1] && a[1] < a[2] && a[0] > a[2] {
 		fmt.Println("ra")
-	case sorted[0] == a[0] && sorted[2] == a[1] && sorted[1] == a[2]:
+		ra(a)
+	} else if a[0] < a[1] && a[1] > a[2] && a[0] < a[2] {
 		fmt.Println("sa")
+		sa(a)
 		fmt.Println("ra")
-	case sorted[1] == a[0] && sorted[2] == a[1] && sorted[0] == a[2]:
+		ra(a)
+	} else if a[0] < a[1] && a[1] > a[2] && a[0] > a[2] {
 		fmt.Println("rra")
+		rra(a)
 	}
-
-	a[0], a[1], a[2] = sorted[0],sorted[1], sorted[2]
 }
 
 func SortStack(stackA *[]int) {
@@ -57,12 +50,12 @@ func SortStack(stackA *[]int) {
 	for len(a) != 3 {
 
 	sorted := []int{}
-	sorted = append(sorted, *stackA...)
+	sorted = append(sorted, a...)
 	sort.Ints(sorted)
 	
 
 		
-		min, indexmin ,min2 := GetMin(a)
+		min, indexmin ,min2 := min1min2(a)
 		half := len(a) / 2
 		if half >= indexmin {
 			for min != a[0] {
@@ -146,7 +139,7 @@ func SortStack(stackA *[]int) {
 		pb(&a, &b)
 	}
 
-	SortThree(&a)
+	SortThree(a)
 
 	for len(b) != 0 {
 		pa(&a, &b)
@@ -154,7 +147,7 @@ func SortStack(stackA *[]int) {
 	fmt.Println("KAMLAT  9RAYA")
 }
 
-func GetMin(a []int) (int, int,int) {
+func min1min2(a []int) (int, int,int) {
 	min := a[0]
 	index := 0
 	for i := 0; i < len(a); i++ {

@@ -15,22 +15,30 @@ func main() {
 		fmt.Println("achkatkahwar")
 		return
 	}
-	stackA := ReadArgs()
-	solver.Solve(stackA)
+	input1 := os.Args[1]
+	stackA := stacka(input1)
+	switch len(stackA) {
+	case 2:
+		solver.SortTwo(stackA)
+	case 3:
+		solver.SortThree(stackA)
+	default:
+		solver.SortStack(&stackA)
+	}
 
 }
 
-func ReadArgs() (stackA []int) {
-	stackAMap := make(map[int]bool)
-	for _, num := range strings.Fields(os.Args[1]) {
+func stacka(s string) (stackA []int) {
+	Map := make(map[int]bool)
+	for _, num := range strings.Fields(s) {
 		n, err := strconv.Atoi(num)
 		if err != nil {
 			log.Fatal("malkom hagara")
 		}
-		if exist := stackAMap[n]; exist {
+		if exist := Map[n]; exist {
 			log.Fatal("malk mrid haka")
 		}
-		stackAMap[n] = true
+		Map[n] = true
 		stackA = append(stackA, n)
 	}
 	return stackA
