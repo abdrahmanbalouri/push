@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	solver "push-swap/solve"
+     "g/solve"
 	"strconv"
 	"strings"
 )
@@ -17,6 +17,7 @@ func main() {
 	}
 	input1 := os.Args[1]
 	stackA := stacka(input1)
+	fmt.Println(stackA)
 	switch len(stackA) {
 	case 2:
 		solver.SortTwo(stackA)
@@ -25,6 +26,8 @@ func main() {
 	default:
 		solver.SortStack(&stackA)
 	}
+
+	fmt.Println(stackA)
 
 }
 

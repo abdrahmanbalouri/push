@@ -127,6 +127,8 @@ func SortStack(stackA *[]int) {
 				pa(&a, &b)
 			}
 			fmt.Println("chwiya  tamara mais haniya")
+			fmt.Println(a)
+
 			return
 			}else{
 				fmt.Println("mn wal mara adchi sahal")
@@ -167,3 +169,4 @@ func min1min2(a []int) (int, int,int) {
 	}
 	return min ,index,min2
 }
+
